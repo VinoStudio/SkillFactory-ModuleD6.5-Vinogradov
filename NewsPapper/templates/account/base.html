@@ -1,0 +1,101 @@
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block site %} {% endblock site %}</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
+
+
+
+    <!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/product.css' %}" rel="stylesheet">
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+  </head>
+  <body>
+  <header class="site-header sticky-top py-1">
+  <nav class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2" href="/news" aria-label="Product">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>{% block title %} {% endblock title %}</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+    </a>
+    <a class="py-2 d-none d-md-inline-block" href="/news">News</a>
+    <a class="py-2 d-none d-md-inline-block" href="/news/search">Search</a>
+    <a class="py-2 d-none d-md-inline-block" href="/news/2">Product</a>
+      {% if user.is_authenticated %}
+      <a class="py-2 d-none d-md-inline-block" href="{% url 'account_logout' %}">LogOut</a>
+      {% if author %}
+      <a class="py-2 d-none d-md-inline-block" href="{% url 'news:author_status' %}">Become Author</a>
+      {% endif %}
+      {% else %}
+      <a class="py-2 d-none d-md-inline-block" href="{% url 'account_login' %}">LogIn</a>
+      {% endif %}
+
+  </nav>
+</header>
+  <div class="container text-dark">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 bg-grey">
+            {% block body %}
+
+            {% if messages %}
+            <div>
+              <strong>{% trans "Messages:" %}</strong>
+              <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            <div>
+              <strong>{% trans "Menu:" %}</strong>
+              <ul>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'account_email' %}">{% trans "Change E-mail" %}</a></li>
+                <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+                {% else %}
+                <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+                <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
+                {% endif %}
+              </ul>
+            </div
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+  </body>
+</html>
+
+
+

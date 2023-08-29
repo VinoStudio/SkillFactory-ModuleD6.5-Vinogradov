@@ -1,0 +1,17 @@
+
+{% extends 'base/default.html' %}
+{% load custom_filters %}
+
+{% block title %} Create Post {% endblock title %}
+{% block content %}
+    <div class="container d-flex flex-md-column align-items-center">
+        <div class="w-75 p-3 d-flex justify-content-center" style="border: solid aquamarine 2px; border-radius: 5px">
+                <form method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <input class="btn btn-success" type="submit" value="submit">
+                </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'base/default.html' %}
+{% load custom_filters %}
+
+{% block title %} Search {% endblock title %}
+{% block content %}
+    <div class="container d-flex flex-md-column align-items-center">
+        <br>
+        <form method="GET" action="{% url 'news:posts' %}">
+            {{ filter.form }}
+            <input type="submit" class="btn btn-primary" value="Find">
+        </form>
+    </div>
+<!--    {% if filter %}-->
+<!--    <table class="table">-->
+<!--                <tr>-->
+<!--                    <td style="font-weight: bold">Title</td>-->
+<!--                    <td style="font-weight: bold">Publish Date</td>-->
+<!--                    <td style="font-weight: bold">Text</td>-->
+<!--                    <td style="font-weight: bold">Edit</td>-->
+<!--                    <td style="font-weight: bold">Delete</td>-->
+<!--                </tr>-->
+<!--                {% for post in filter.qs %}-->
+<!--                    <tr>-->
+<!--                        <td><a href="{% url 'news:post_details' post.id %}">{{ post.title|censor }}</a></td>-->
+<!--                        <td>{{ post.postDate|date:'d.m.Y' }}</td>-->
+<!--                        <td>{{ post.text|truncatewords:50|censor }}</td>-->
+<!--                        <td>-->
+<!--                            <a href="{% url 'news:post_update' post.id %}">Edit</a>-->
+<!--                        </td>-->
+<!--                        <td><a href="{% url 'news:delete_post' post.id %}">Delete</a></td>-->
+<!--                    </tr>-->
+<!--                {% endfor %}-->
+<!--            </table>-->
+<!--    {% endif %}-->
+
+{% endblock content %}
+
+
+
+

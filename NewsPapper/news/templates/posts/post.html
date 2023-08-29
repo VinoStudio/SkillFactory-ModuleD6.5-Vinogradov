@@ -1,0 +1,24 @@
+{% extends 'base/default.html' %}
+{% load custom_filters %}
+
+{% block title %} Selected post {% endblock title %}
+{% block content %}
+    <div class="container d-flex flex-md-column align-items-center">
+        <div class="w-75 p-3 d-flex justify-content-center" style="border: solid aquamarine 2px; border-radius: 5px">
+            <br>
+            <ul>
+                <li> Title: {{ news_details.title|censor|truncatewords:50 }}</li>
+                <hr>
+                <li> Publish Date: {{ news_details.postDate|date:'d.m.Y H:i' }}</li>
+                <hr>
+                <li> Text: {{ news_details.text|censor|truncatewords:50 }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container d-flex flex-md-row justify-content-around">
+        <a href="{% url 'news:post_update' news_details.id %}">Edit</a>
+        <a href="{% url 'news:delete_post' news_details.id %}">Delete</a>
+    </div>
+{% endblock content %}
+
+

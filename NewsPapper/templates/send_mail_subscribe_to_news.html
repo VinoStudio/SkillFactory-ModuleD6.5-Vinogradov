@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New post was added in you favorite category!</title>
+</head>
+<body>
+    <h2> Greetings! Dear {{ user.username }}, new topic in your favorite category!</h2>
+    <br>
+    <h3> {{ post.title }}</h3>
+    <p>{{ post.text|truncatechars:50 }} </p>
+    <br>
+    <p>If you want to read full post, click a link below:</p>
+    <p><a href="http://127.0.0.1:8000/{{ post.get_absolute_url }}">{{ post.title }}</a></p>
+</body>
+</html>

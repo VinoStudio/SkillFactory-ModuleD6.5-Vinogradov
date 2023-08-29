@@ -1,0 +1,1 @@
+Dear {{ user.username }}, Please Confirm Your E-mail Address

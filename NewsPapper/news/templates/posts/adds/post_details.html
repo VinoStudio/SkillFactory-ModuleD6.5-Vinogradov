@@ -1,0 +1,18 @@
+{% extends 'base/default.html' %}
+{% load custom_filters %}
+
+{% block title %} Post Details {% endblock title %}
+{% block content %}
+    <div class="card d-flex flex-md-column align-items-center">
+        <div class="card-header" style="border: solid aquamarine 2px; border-radius: 5px">
+            <br>
+            <h3>Title: {{ news_details.title|censor|truncatewords:50 }}</h3>
+                <hr>
+                <div>Publish Date: {{ news_details.postDate|date:'d.m.Y H:i' }}</div>
+                <hr>
+        </div>
+        <div class="card-body">Text: {{ news_details.text|censor|truncatewords:50 }}</div>
+    </div>
+{% endblock content %}
+
+

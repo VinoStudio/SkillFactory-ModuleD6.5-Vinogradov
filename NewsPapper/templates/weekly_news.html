@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts of the week</title>
+</head>
+<body>
+    <h2>Greetings!, {{ subscriber }}!</h2>
+    <p>This is your posts of the week! See ya!</p>
+    <ul>
+        {% for post in weekly_posts %}
+            <li><a href="http://127.0.0.1:8000/{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
